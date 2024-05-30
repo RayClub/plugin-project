@@ -4,7 +4,7 @@ FROM node:18-alpine
 
 
 # 设置工作目录
-WORKDIR impl_plugin/impl_plugin.go
+WORKDIR /root/ray-docker
 
 # 复制go.mod和go.sum文件以保持依赖一致性
 COPY go.mod go.sum ./
