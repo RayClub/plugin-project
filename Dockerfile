@@ -6,7 +6,7 @@ FROM node:18-alpine
 # 设置工作目录
 WORKDIR /root/ray-docker
 
-# 复制go.mod和go.sum文件以保持依赖一致性
+# 复制go.mod文件以保持依赖一致性
 COPY go.mod ./
 
 # 安装插件所需的依赖
