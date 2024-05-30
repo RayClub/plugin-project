@@ -4,7 +4,7 @@ FROM node:18-alpine
 
 
 # 设置工作目录
-ADD ./plugin-project/ /root/ray-docker/plugin-project
+ADD ./ /root/ray-docker/plugin-project
 WORKDIR /root/ray-docker/plugin-project/
 
 # 复制go.mod文件以保持依赖一致性
