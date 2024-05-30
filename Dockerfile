@@ -12,7 +12,12 @@ COPY go.mod ./
 
 # 安装插件所需的依赖
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
-RUN go env -w GOPROXY=https://goproxy.cn,https://gocenter.io,https://goproxy.io,direct
+ENV GO111MODULE=on
+ENV GOPROXY=https://proxy.golang.org,direct
+RUN curl -sSfL https://raw.githubusercontent.com/golang/go/master/src/go/version.info | grep 'version = "go1.21"' && \
+    apt-get update && \
+    apt-get install -y golang-go && \
+    go version
 RUN go env -w GOPRIVATE=git.jxedc.com
 RUN go mod tidy
 
