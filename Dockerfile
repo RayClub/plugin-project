@@ -12,11 +12,7 @@ COPY go.mod ./
 
 # 安装插件所需的依赖
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
-RUN apk add --no-cache git
-RUN go env -w GOPROXY=https://goproxy.cn,https://gocenter.io,https://goproxy.io,direct
-RUN go env -w GOPRIVATE=git.jxedc.com
 RUN go mod tidy
-RUN GOARCH=amd64 CGO_ENABLED=0 GOOS=linux go build -o applicationd
 
 # 复制源代码到工作目录
 COPY . .
