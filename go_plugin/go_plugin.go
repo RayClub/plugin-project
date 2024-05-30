@@ -2,17 +2,19 @@ package main
 
 import "fmt"
 
-type MyPlugin struct{}
+type GoPlugin struct{}
+
+var MyPlugin GoPlugin
 
 // 实现插件
-func (p *MyPlugin) Execute() string {
+func (p *GoPlugin) Execute() string {
 	return "Hello from MyPlugin!"
 }
 
 func main() {
 
 	fmt.Println("Testing MyPlugin...")
-	plugin := &MyPlugin{}
+	plugin := &GoPlugin{}
 	result := plugin.Execute()
 	fmt.Println(result)
 }
