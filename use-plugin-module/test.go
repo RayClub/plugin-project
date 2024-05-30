@@ -16,7 +16,7 @@ func main() {
 		return
 	}
 
-	sym, err := p.Lookup("Plugin")
+	sym, err := p.Lookup("MyPlugin")
 	if err != nil {
 		println(err.Error())
 		return
