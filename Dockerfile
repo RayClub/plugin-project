@@ -11,6 +11,8 @@ WORKDIR /root/ray-docker/plugin-project/
 COPY go.mod ./
 
 # 安装插件所需的依赖
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
+RUN apk add --no-cache git
 RUN go env -w GOPROXY=https://goproxy.cn,https://gocenter.io,https://goproxy.io,direct
 RUN go env -w GOPRIVATE=git.jxedc.com
 RUN go mod tidy
