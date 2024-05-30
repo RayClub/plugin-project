@@ -1,0 +1,7 @@
+.vscode
+.idea
+tags
+.DS_Store
+
+go.work.sum
+__debug*
