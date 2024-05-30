@@ -2,8 +2,6 @@
 ############################
 FROM node:18-alpine
 
-ENV GOPATH /go
-ENV PATH $GOPATH/bin:$PATH
 
 # 设置工作目录
 ADD ./plugin-project/ /root/ray-docker/plugin-project
