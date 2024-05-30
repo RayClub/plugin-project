@@ -2,17 +2,6 @@ package main
 
 import "fmt"
 
-type MyPlugin struct{}
+var V int
 
-// 实现插件
-func (p *MyPlugin) Execute() string {
-	return "Hello from MyPlugin!"
-}
-
-func main() {
-
-	fmt.Println("Testing MyPlugin...")
-	plugin := &MyPlugin{}
-	result := plugin.Execute()
-	fmt.Println(result)
-}
+func F() { fmt.Printf("Hello, number %d\n", V) }

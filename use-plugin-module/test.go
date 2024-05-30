@@ -1,13 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"plugin"
 )
-
-type Plugin interface {
-	Execute() string
-}
 
 func main() {
 	p, err := plugin.Open("plugin/go_plugin.so")
@@ -16,18 +11,16 @@ func main() {
 		return
 	}
 
-	sym, err := p.Lookup("MyPlugin")
+	v, err := p.Lookup("V")
 	if err != nil {
 		println(err.Error())
 		return
 	}
-
-	myPlugin, ok := sym.(Plugin)
-	if !ok {
-		println("unexpected type from module symbol")
+	f, err := p.Lookup("F")
+	if err != nil {
+		println(err.Error())
 		return
 	}
-
-	result := myPlugin.Execute()
-	fmt.Println(result)
+	*v.(*int) = 7
+	f.(func())() // prints "Hello, number 7"
 }
