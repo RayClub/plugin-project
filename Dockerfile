@@ -12,13 +12,16 @@ COPY go.mod ./
 
 # 安装插件所需的依赖
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
+RUN apk add --no-cache git
+RUN go env -w GOPROXY=https://goproxy.cn,https://gocenter.io,https://goproxy.io,direct
+RUN go env -w GOPRIVATE=git.jxedc.com
 RUN go mod tidy
 
 # 复制源代码到工作目录
 COPY . .
 
 # 构建插件
-RUN go build -o impl_plugin
+RUN go build -o go_plugin/impl_plugin
 
 # 设置容器启动时运行的命令
-ENTRYPOINT ["./impl_plugin"]
+ENTRYPOINT ["./go_plugin"]
